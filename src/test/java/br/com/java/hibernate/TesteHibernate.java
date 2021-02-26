@@ -1,11 +1,14 @@
 package br.com.java.hibernate;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
 import org.junit.Test;
 
 import dao.DaoGeneric;
 import model.UsuarioPessoa;
 
-public class TesteHibernate {
+public class TesteHibernate<E> {
 
 	@Test
 	public void testeHibernateUtil() {
@@ -59,4 +62,12 @@ public class TesteHibernate {
 		
 	}
 	
+	@Test
+	public void testeDelete() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		UsuarioPessoa pessoa=daoGeneric.pesquisar(5L,UsuarioPessoa.class);
+		daoGeneric.deletarPorId(pessoa);
+		
+	}
 }
