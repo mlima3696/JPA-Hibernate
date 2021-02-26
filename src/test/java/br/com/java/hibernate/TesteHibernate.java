@@ -8,7 +8,7 @@ import org.junit.Test;
 import dao.DaoGeneric;
 import model.UsuarioPessoa;
 
-public class TesteHibernate<E> {
+public class TesteHibernate{
 
 	@Test
 	public void testeHibernateUtil() {
