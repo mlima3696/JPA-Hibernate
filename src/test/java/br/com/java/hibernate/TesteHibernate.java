@@ -1,5 +1,7 @@
 package br.com.java.hibernate;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -16,8 +18,8 @@ public class TesteHibernate{
 		
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		pessoa.setIdade(23);
-		pessoa.setNome("Milton Gomes");
-		pessoa.setSobrenome("Lima");
+		pessoa.setNome("Milton Gomes de Lima");
+		pessoa.setSobrenome("Junior");
 		pessoa.setEmail("mlima36@gmail.com");
 		pessoa.setLogin("mlima");
 		pessoa.setSenha("admin");
@@ -68,6 +70,19 @@ public class TesteHibernate{
 		
 		UsuarioPessoa pessoa=daoGeneric.pesquisar(5L,UsuarioPessoa.class);
 		daoGeneric.deletarPorId(pessoa);
+		
+	}
+	
+	@Test
+	public void testeConsultar() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> list = daoGeneric.listar(UsuarioPessoa.class);
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("-----------------------------------------------------------");
+		}
 		
 	}
 }
