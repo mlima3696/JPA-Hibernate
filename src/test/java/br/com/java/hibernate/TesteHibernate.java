@@ -18,8 +18,8 @@ public class TesteHibernate{
 		
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		pessoa.setIdade(23);
-		pessoa.setNome("Milton Gomes de Lima");
-		pessoa.setSobrenome("Junior");
+		pessoa.setNome("Milton Gomes");
+		pessoa.setSobrenome("Lima");
 		pessoa.setEmail("mlima36@gmail.com");
 		pessoa.setLogin("mlima");
 		pessoa.setSenha("admin");
@@ -102,6 +102,21 @@ public class TesteHibernate{
 		List<UsuarioPessoa> list = daoGeneric.getEntityManager().
 				createQuery(" from UsuarioPessoa order by id")
 				.setMaxResults(1)
+				.getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
+	}
+	
+	@Test
+	public void testeQueryListParamenter() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager().
+				createQuery(" from UsuarioPessoa where nome = :nome or sobrenome = :sobrenome")
+				.setParameter("nome", "Milton")
+				.setParameter("sobrenome", "Lima")
+				.setMaxResults(6)
 				.getResultList();
 		
 		for (UsuarioPessoa usuarioPessoa : list) {
