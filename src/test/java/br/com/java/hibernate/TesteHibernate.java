@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.junit.Test;
 
@@ -138,5 +140,29 @@ public class TesteHibernate{
 		Long somaIdade = (Long) daoGeneric.getEntityManager().createQuery("select sum(u.idade) from UsuarioPessoa u ")
 				         .getSingleResult();
 		System.out.println("Soma de todas as idades e = " + somaIdade);
+	}
+	
+	@Test
+	public void testeNameQuery1() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager()
+				.createNamedQuery("UsuarioPessoa.todos")
+				.getResultList();
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
+	}
+	
+	@Test
+	public void testeNameQuery2() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		List<UsuarioPessoa> list = daoGeneric.getEntityManager()
+				.createNamedQuery("UsuarioPessoa.buscaPorNome")
+				.setParameter("nome","Leo")
+				.getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+		}
 	}
 }

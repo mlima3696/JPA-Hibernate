@@ -4,8 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
+	@NamedQuery(name = "UsuarioPessoa.buscaPorNome", query = "select u from UsuarioPessoa u where u.nome = :nome")
+
+})
 public class UsuarioPessoa {
 
 	@Id
@@ -67,6 +74,4 @@ public class UsuarioPessoa {
 		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
 				+ ", login=" + login + ", senha=" + senha + ", idade=" + idade + "]";
 	}
-	
-	
 }
