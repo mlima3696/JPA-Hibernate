@@ -6,6 +6,7 @@
 	<persistence-unit name="posjavamavenhibernate">
 	
 	<class>model.UsuarioPessoa</class>
+	<class>model.TelefoneUser</class>
 	
 	<!--Dados de Conexao com o Banco-->
 	<properties>
