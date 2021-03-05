@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class UsuarioPessoa {
 	private String senha;
 	private int idade;
 	
-	@OneToMany(mappedBy = "usuarioPessoa" ) // Um para muitos
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER ) // Um para muitos - trazer os telefones quando consultar um usuario
 	private List<TelefoneUser> telefoneusers; //Muitos telefones para um Usuario
 	
 	public List<TelefoneUser> getTelefoneusers() {
